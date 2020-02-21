@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven /><!-- 이게있어야 어노테이션 사용 가능  -->
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" /> <!-- 화면단 어디있는지 알려주는 놈 -->
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.sample.controller" />
+	<context:component-scan base-package="com.sample.service" />
+	<!-- ㅈㄴ중요하다 이거 없으면 아무것도 못한다  저 경로 들어가서 -->
+	<!-- @controller, service, repositary, cmoponent 가 붙은 크래스들 찾아가서 beans로 추가해준다. -->
+	<!-- beans의 역할은 객체생성후 만들어진 인스턴스   -->
+	<!-- dao는 없어도 된다 domain persistence controller 없어도 된다.  -->
+	
+	
+	
+</beans:beans>
